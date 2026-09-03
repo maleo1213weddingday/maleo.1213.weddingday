@@ -1,0 +1,50 @@
+<div id="menuCart">
+    <input class="form-check" type="checkbox" id="phoneProduct">
+
+    <header class="navbar navbar-expand-fluid fixed-top nav-bg  py-xl-0 px-xl-3">
+        <div class="container-fluid">
+
+            <a class="logo-item order-1" href="index.html">
+                <div class="logo">
+                    <h1>里歐 & 小馬 1213 Wedding Day</h1>
+                </div>
+            </a>
+
+            <ul
+                class="navbar-nav icon-nav flex-row flex-md-col align-items-center d-flex order-2 order-xl-3 ps-0 ps-lg-5">
+                <li>
+                    <label class="dropdown-btn size-right" for="phoneProduct">
+                        <i class="fa-solid fa-bars"></i>
+
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="phone-item" id="navMenu">
+        <div class="container-fluid">
+            <label class="close-title" for="phoneProduct"><i class="fa-solid fa-arrow-left"></i></label>
+            <ul class="phone-nav">
+                <li><a href="#weddingDetails">婚禮資訊</a></li>
+                <li><a href="#howToGetThere">交通資訊</a></li>
+                <li><a href="#weddingDetails">婚禮流程</a></li>
+                <li><a href="#invitation">出席表單填寫</a></li>
+                <li><a href="#commingSoon">世紀婚禮倒數</a></li>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script>
+    document.querySelectorAll('.phone-item a').forEach(link => {
+        link.addEventListener('click', function () {
+
+            // 取消 checkbox 勾選
+            document.getElementById('phoneProduct').checked = false;
+
+        });
+    });
+</script>
+<script src="lib/sweetalert/sweetalert.min.js"></script>
