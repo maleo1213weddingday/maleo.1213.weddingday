@@ -156,7 +156,7 @@ new Vue({
             data.append('entry.1843907932', this.form.vegetarian);
             data.append('entry.178777539', this.form.needCard);  // 是否需要實體喜帖
             data.append('entry.460748155', this.form.address);
-            data.append('entry.403691430', this.form.message);
+            data.append('entry.1177404314', this.form.message);
 
             axios.post(url, data)
                 .then(this.successHandler)
@@ -166,7 +166,7 @@ new Vue({
         },
         successHandler() {
             swal({
-                title: "送出成功 ♡",
+                title: "♥ 送出成功 ♥",
                 text: "我們已收到您的回覆，期待相見！",
                 icon: "success",
                 buttons: false,   // 不顯示按鈕

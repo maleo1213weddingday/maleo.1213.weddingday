@@ -652,6 +652,7 @@ nav .scroll .contact-text {
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease-in-out;
     padding: 10px 0;
+    font-weight: bolder;
 
 }
 
@@ -675,7 +676,7 @@ nav .scroll .contact-text {
 @media (min-width: 1200px) {
 
     .phone-item ul li {
-        letter-spacing: 8px;
+        /* letter-spacing: 8px; */
     }
 
     .phone-item ul li+li {

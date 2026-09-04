@@ -43,12 +43,28 @@
         <!-- 公司menu -->
         <div id="import-menu"></div>
 
-        <audio id="bgMusic" loop autoplay>
+        <audio id="bgMusic" loop>
             <source src="sound/music.mp3" type="audio/mpeg">
         </audio>
         <button id="musicToggle" type="button" aria-label="音樂開關">
             <i class="fa-solid fa-music"></i>
         </button>
+
+        <div id="musicChoiceOverlay">
+            <div class="music-choice-box">
+                <p class="music-choice-title">是否開啟背景音樂？</p>
+                <div class="music-choice-btns">
+                    <button type="button" id="musicChoiceOn">
+                        <i class="fa-solid fa-music"></i>
+                        開啟音樂
+                    </button>
+                    <button type="button" id="musicChoiceOff">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                        先不要
+                    </button>
+                </div>
+            </div>
+        </div>
         <a id="mapToggle" href="https://maps.app.goo.gl/RdZeywiH1hrkmg8J8" target="_blank" rel="noopener"
             aria-label="開啟地圖導航">
             <i class="fa-solid fa-location-dot"></i>
@@ -101,8 +117,8 @@
             </div>
 
         </section>
-        <a href="https://maps.app.goo.gl/RdZeywiH1hrkmg8J8" target="_blank"><img class="w-100" src="img/5-4.webp" alt=""
-                title=""></a>
+        <a href="https://maps.app.goo.gl/RdZeywiH1hrkmg8J8" target="_blank"><img class="w-100 wow fadeIn"
+                src="img/5-4.webp" alt="" title=""></a>
         <section class="section-area area5 pt-0">
             <div class="container-xl">
                 <div class="row">
@@ -115,7 +131,7 @@
             </div>
 
         </section>
-        <section class="section-area area6" id="weddingDetails">
+        <section class="section-area area6" id="weddingProcess">
             <div class="container-xl">
                 <div class="row">
                     <div class="col-12 wow fadeInUp">
@@ -168,7 +184,7 @@
                             </div>
                             <div class="title-item">
                                 <h2></h2>
-                                <p>請於xx/xx前回覆確認人數，拜偷拜偷</p>
+                                <p>請於09/15前回覆確認人數，拜偷拜偷</p>
                             </div>
                         </div>
                     </div>
@@ -200,7 +216,7 @@
                                             <option>女方親友/父母好友</option>
                                             <option>男方同學好友</option>
                                             <option>女方同學好友</option>
-                                            <option>富邦主管/同事（邦邦的朋友們幫我勾選這欄唷！）</option>
+                                            <option>富邦主管/同事（邦邦的朋友們請都勾選這欄唷！）</option>
                                         </select>
                                         <div class="invalid-feedback mb-4">
                                             {{ errors.relation }}
@@ -295,6 +311,15 @@
                                         </div>
 
                                     </template>
+                                    <div class="col-12 mb-2">
+                                        <label for="message" class="form-label">♥ 有什麼小祕密或祝福要告訴我們的嘛?</label>
+                                        <textarea id="message" :class="{ 'is-invalid': errors.message }"
+                                            class="form-control" rows="10" v-model="form.message"
+                                            placeholder="請說！"></textarea>
+                                        <div class="invalid-feedback mb-4">
+                                            {{ errors.message }}
+                                        </div>
+                                    </div>
 
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-send px-5" :disabled="isSubmitting">
@@ -371,9 +396,24 @@
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script>
         $(function () {
-            $("#import-menu").load("import-menu.html");
+            $("#import-menu").load("import-menu.html", function () {
+                updateAnchorScrollOffset();
+            });
             $("#import-footer").load("import-footer.html");
         });
+
+        function updateAnchorScrollOffset() {
+            var header = document.querySelector('#import-menu header');
+            if (!header) return;
+
+            var offset = header.offsetHeight + 0;
+
+            document.querySelectorAll('.section-area[id]').forEach(function (el) {
+                el.style.scrollMarginTop = offset + 'px';
+            });
+        }
+
+        window.addEventListener('resize', updateAnchorScrollOffset);
     </script>
     <script>
 
@@ -417,6 +457,9 @@
         (function () {
             var bgMusic = document.getElementById('bgMusic');
             var musicToggle = document.getElementById('musicToggle');
+            var overlay = document.getElementById('musicChoiceOverlay');
+            var choiceOn = document.getElementById('musicChoiceOn');
+            var choiceOff = document.getElementById('musicChoiceOff');
             bgMusic.volume = 0.5;
 
             function updateToggleIcon() {
@@ -432,31 +475,34 @@
                 }
             }
 
-            function playOnFirstInteraction() {
-                tryPlay();
-                document.removeEventListener('click', playOnFirstInteraction);
-                document.removeEventListener('touchstart', playOnFirstInteraction);
-                document.removeEventListener('scroll', playOnFirstInteraction);
+            function showOverlay() {
+                overlay.classList.add('show');
             }
 
-            document.addEventListener('click', playOnFirstInteraction, { once: true });
-            document.addEventListener('touchstart', playOnFirstInteraction, { once: true });
-            document.addEventListener('scroll', playOnFirstInteraction, { once: true });
+            function hideOverlay() {
+                overlay.classList.remove('show');
+            }
+
+            choiceOn.addEventListener('click', function () {
+                tryPlay();
+                hideOverlay();
+            });
+
+            choiceOff.addEventListener('click', function () {
+                bgMusic.pause();
+                updateToggleIcon();
+                hideOverlay();
+            });
 
             musicToggle.addEventListener('click', function (e) {
                 e.stopPropagation();
-                if (bgMusic.paused) {
-                    tryPlay();
-                } else {
-                    bgMusic.pause();
-                }
-                updateToggleIcon();
+                showOverlay();
             });
 
             bgMusic.addEventListener('play', updateToggleIcon);
             bgMusic.addEventListener('pause', updateToggleIcon);
 
-            tryPlay();
+            showOverlay();
         })();
     </script>
 

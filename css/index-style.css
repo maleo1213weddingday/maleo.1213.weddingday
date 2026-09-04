@@ -413,11 +413,11 @@ html {
 
 .section-area.area4 {
     background: #faf6ed;
-    padding: 30px 0 0 0;
+    padding: 60px 0 0 0;
 }
 
 .section-area.area4 .item {
-    padding-bottom: 80vh;
+    padding-bottom: 90vh;
     text-align: center;
     display: block;
     width: 100%;
@@ -443,12 +443,12 @@ html {
 
 .section-area.area4 .item img.img1 {
     transform: translateY(-50%) scale(1.1);
-    top: 47%;
+    top: 48%;
 }
 
 .section-area.area5 {
     background: #b49190;
-    padding: 80px 0 40px 0;
+    padding: 60px 0 40px 0;
     /* margin-top: -70px; */
 }
 
@@ -489,7 +489,7 @@ html {
 
 .section-area.area7 {
     background: #b49190;
-    padding: 40px 0;
+    padding: 60px 0;
 }
 
 .section-area.area8 {
@@ -612,7 +612,7 @@ html {
 .section-area.area10 {
     position: relative;
     background: #b49190;
-    padding: 80px 0 50px 0;
+    padding: 60px 0 50px 0;
     min-height: auto;
 }
 
@@ -1429,6 +1429,67 @@ html {
 
 #musicToggle.is-playing i {
     animation: musicSpin 3s linear infinite;
+}
+
+#musicChoiceOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(59, 46, 46, 0.55);
+    z-index: 1200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#musicChoiceOverlay.show {
+    display: flex;
+}
+
+.music-choice-box {
+    background: #fbf7ee;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.music-choice-title {
+    color: #3e5477;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 20px;
+}
+
+.music-choice-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.music-choice-btns button {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#musicChoiceOn {
+    background: #3e5477;
+    color: #fff;
+}
+
+#musicChoiceOff {
+    background: transparent;
+    color: #3e5477;
+    border: 1px solid #3e5477;
 }
 
 #mapToggle {
