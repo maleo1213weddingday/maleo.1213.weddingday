@@ -333,9 +333,80 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- 查詢座位 -->
+                    <div class="row seat-block" id="searchSeat">
+                        <div class="col-12 wow fadeInUp">
+                            <div class="item">
+                                <h2>查詢座位</h2>
+                                <span class="en-sub">Seating Chart</span>
+                                <p>請輸入完整姓名進行查詢。</p>
+                                <p>如果找不到座位可以尋求簽到處幫忙！</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pb-5">
+                        <div class="col-11 col-xl-8 wow fadeInUp">
+                            <div id="seat" class="row justify-content-center gx-0">
+                                <div class="col-12 mb-2">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="姓名"
+                                            v-model.trim="form.name" @compositionstart="handleCompositionStart"
+                                            @compositionend="handleCompositionEnd" @keydown.enter.prevent="handleEnter">
+                                        <button class="btn btn-send px-2 px-lg-5" type="button" :disabled="loading"
+                                            @click="searchSeat">
+                                            {{ loading ? '查詢中...' : '查詢座位' }}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <transition name="fade">
+                                    <div v-if="showModal" class="seat-result mt-3">
+                                        <template v-if="modalState === 'loading'">
+                                            <div class="text-center modal-message">正在查詢座位資訊，請稍候...</div>
+                                        </template>
+
+                                        <template v-else-if="modalState === 'success'">
+                                            <div class="result-item">
+                                                <div class="result-label">姓名</div>
+                                                <div class="result-value">：{{ result.name || '-' }}</div>
+                                            </div>
+                                            <div class="result-item">
+                                                <div class="result-label">桌號</div>
+                                                <div class="result-value">：{{ result.table || '-' }}</div>
+                                            </div>
+                                            <div class="result-item" v-if="result.note">
+                                                <div class="result-label">備註</div>
+                                                <div class="result-value">：{{ result.note }}</div>
+                                            </div>
+                                            <div class="pic-item">
+                                                <div class="magnifier-wrap" id="seat-magnifier-wrap">
+                                                    <img class="w-100" id="seat-img" src="img/seat.webp" alt="座位圖"
+                                                        title="座位圖">
+                                                </div>
+                                                <div class="zoom-hint">點擊圖片放大查看</div>
+                                            </div>
+                                        </template>
+
+                                        <template v-else-if="modalState === 'error'">
+                                            <div class="modal-message text-center text-danger">{{ modalMessage }}</div>
+                                        </template>
+                                    </div>
+                                </transition>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- 座位圖全螢幕放大 -->
+        <div id="seat-zoom-overlay">
+            <div id="seat-zoom-close">✕</div>
+            <div id="seat-zoom-scroll">
+                <img src="img/seat.webp" alt="座位圖">
+            </div>
+        </div>
 
 
         <section class="section-area area9" id="commingSoon">
@@ -436,6 +507,7 @@
     <script src="lib/axios/axios.js"></script>
     <script src="lib/sweetalert/sweetalert.min.js"></script>
     <script src="js/form.js"></script>
+    <script src="js/seat.js"></script>
     <script src="lib/timer/timer.js"></script>
     <script>
         var wow = new WOW(

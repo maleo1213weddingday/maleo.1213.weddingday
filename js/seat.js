@@ -2,7 +2,8 @@ new Vue({
     el: '#seat',
     data() {
         return {
-            apiUrl: 'https://script.google.com/macros/s/AKfycbwcefeLPZOr9w4q06rUWJw1u6pKuJcH6pY0_oKpfERfRBa_9q3-NPgmHrte1l4qeZ8J/exec',
+            // 貼上 Apps Script 部署後的「網頁應用程式網址」(見 apps-script/seat-lookup.gs 說明)
+            apiUrl: '',
             loading: false,
             showModal: false,
             modalState: 'loading',
@@ -126,6 +127,11 @@ new Vue({
 
             if (!name) {
                 this.showErrorModal('請輸入姓名');
+                return;
+            }
+
+            if (!this.apiUrl) {
+                this.showErrorModal('座位查詢尚未開放');
                 return;
             }
 

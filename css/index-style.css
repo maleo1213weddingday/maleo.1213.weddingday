@@ -928,6 +928,49 @@ html {
     color: #fff;
 }
 
+.section-area.area10 .seat-block {
+    margin-top: 60px;
+}
+
+.section-area.area10 .seat-block .item h2 {
+    margin-bottom: 6px;
+}
+
+.section-area.area10 .seat-block .en-sub {
+    display: block;
+    margin-bottom: 24px;
+    font-family: 'SourceHanSansSC-Light';
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+/* @media (min-width: 1200px) {
+    .section-area.area10 .seat-block .en-sub {
+        font-size: 16px;
+        letter-spacing: 6px;
+    }
+} */
+
+.seat-result {
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+    padding: 12px 20px;
+    color: #3e5477;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+}
+
+.seat-result .modal-message {
+    padding: 12px 0;
+}
+
+.seat-result .pic-item {
+    padding-top: 10px;
+}
+
 .section-area.area10 .item {
     text-align: center;
     text-align: center;
@@ -936,7 +979,7 @@ html {
 .section-area.area10 .item h2 {
     font-size: 18px;
     letter-spacing: 2px;
-    color: #3f6594;
+    color: #fff;
     font-family: 'SourceHanSansSC-Light';
     font-weight: 600;
     margin-bottom: 30px;
@@ -945,7 +988,7 @@ html {
 .section-area.area10 .item p {
     font-size: 13px;
     letter-spacing: 2px;
-    color: #3e5477;
+    color: #fff;
     font-family: 'SourceHanSansSC-Light';
 }
 
@@ -960,10 +1003,7 @@ html {
         letter-spacing: 5px;
     }
 
-    .section-area.area10 .item p {
-        font-size: 18px;
 
-    }
 }
 
 

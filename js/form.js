@@ -167,7 +167,7 @@ new Vue({
         successHandler() {
             swal({
                 title: "♥ 送出成功 ♥",
-                text: "我們已收到您的回覆，期待相見！",
+                text: "我們已收到您的回覆，期待相見唷！",
                 icon: "success",
                 buttons: false,   // 不顯示按鈕
                 closeOnEsc: false,
