@@ -376,6 +376,10 @@
                                                 <div class="result-label">桌號</div>
                                                 <div class="result-value">：{{ result.table || '-' }}</div>
                                             </div>
+                                            <div class="result-item" v-if="result.seat">
+                                                <div class="result-label">座位</div>
+                                                <div class="result-value">：{{ result.seat }}</div>
+                                            </div>
                                             <div class="result-item" v-if="result.note">
                                                 <div class="result-label">備註</div>
                                                 <div class="result-value">：{{ result.note }}</div>
