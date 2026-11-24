@@ -346,7 +346,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center pb-5">
-                        <div class="col-11 col-xl-8 wow fadeInUp">
+                        <div class="col-11 wow fadeInUp">
                             <div id="seat" class="row justify-content-center gx-0">
                                 <div class="col-12 mb-2">
                                     <div class="input-group mb-3">
@@ -354,8 +354,9 @@
                                             v-model.trim="form.name" @compositionstart="handleCompositionStart"
                                             @compositionend="handleCompositionEnd" @keydown.enter.prevent="handleEnter">
                                         <button class="btn btn-send px-2 px-lg-5" type="button" :disabled="loading"
-                                            @click="searchSeat">
-                                            {{ loading ? '查詢中...' : '查詢座位' }}
+                                            @click="searchSeat" aria-label="查詢座位" title="查詢座位">
+                                            <i class="fa-solid"
+                                                :class="loading ? 'fa-spinner fa-spin' : 'fa-magnifying-glass'"></i>
                                         </button>
                                     </div>
                                 </div>

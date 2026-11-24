@@ -3,7 +3,7 @@ new Vue({
     data() {
         return {
             // 貼上 Apps Script 部署後的「網頁應用程式網址」(見 apps-script/seat-lookup.gs 說明)
-            apiUrl: '',
+            apiUrl: 'https://script.google.com/macros/s/AKfycbw0G9gYiKej9NfEAUw_itmTAZwlloTTlx60Jx3D2QBHGbGNunEiXevFHRHSlUS2PGlxqQ/exec',
             loading: false,
             showModal: false,
             modalState: 'loading',
